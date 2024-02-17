@@ -1,0 +1,39 @@
+class Solution {
+public:
+    void bfs(vector<vector<int>>& matrix,queue<pair<int,int>>&q)
+    {
+        int row=matrix.size();
+        int col=matrix[0].size();
+        while(!q.empty())
+        {
+            int rr=q.front().first;
+            int cc=q.front().second;
+            q.pop();
+            for(int i=0;i<col;i++)
+            {
+                matrix[rr][i]=0;
+            }
+            for(int i=0;i<row;i++)
+            {
+                matrix[i][cc]=0;
+            }
+        }
+    }
+    void setZeroes(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        int m=matrix[0].size();
+        queue<pair<int,int>>q;
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<m;j++)
+            {
+                if(matrix[i][j]==0)
+                {
+                    q.push({i,j});
+                }
+            }
+        }
+        bfs(matrix,q);
+        // return matrix;
+    }
+};
